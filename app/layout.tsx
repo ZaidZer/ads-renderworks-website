@@ -1,32 +1,24 @@
 "use client";
+
+import type { ReactNode } from "react";
 import { useState } from "react";
-import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieModal from "@/components/CookieModal";
+import "./globals.css";
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   const [cookieOpen, setCookieOpen] = useState(false);
 
   return (
     <html lang="en">
       <body className="bg-gray-50 text-gray-900">
-
-        {/* NAVBAR ALWAYS AT TOP */}
         <Navbar />
 
-        {/* PAGE CONTENT */}
         {children}
 
-        {/* COOKIE MODAL */}
-        <CookieModal 
-          open={cookieOpen}
-          onClose={() => setCookieOpen(false)}
-        />
-
-        {/* FOOTER WITH WORKING COOKIE BUTTON */}
+        <CookieModal open={cookieOpen} onClose={() => setCookieOpen(false)} />
         <Footer onOpenCookies={() => setCookieOpen(true)} />
-
       </body>
     </html>
   );
