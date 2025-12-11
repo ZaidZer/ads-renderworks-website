@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f5f5;
+  --foreground: #0d0d10;
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(8px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+.animate-fade {
+  animation: fadeIn 0.18s ease-out forwards;
+}
+.nav-underline {
+  position: relative;
+}
+
+.nav-underline::before {
+  content: "";
+  position: absolute;
+  top: -6px;       /* beam ABOVE the text */
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: 3px;     /* beam thickness */
+  background-color: #8A0026; /* your brand red */
+  transition: transform 0.25s ease-out;
+  border-radius: 999px;
+}
+
+.nav-underline:hover::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* TEXT SLIDE IN FROM LEFT */
+@keyframes textSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-text-slide {
+  animation: textSlideIn 0.9s ease-out forwards;
+}
+
+/* WHITE BAR SLIDE TRANSITION BETWEEN SLIDES */
+@keyframes slideWipe {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.slide-transition {
+  position: absolute;
+  inset: 0;
+  background: white;
+  z-index: 40;
+  animation: slideWipe 0.7s ease-in-out;
+  pointer-events: none;
+}
+
+@import "bootstrap-icons/font/bootstrap-icons.css";
